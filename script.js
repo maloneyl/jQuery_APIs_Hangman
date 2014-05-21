@@ -17,12 +17,11 @@ function initialDisplay(response) {
   updateGameToken(response);
   $('#new-game').hide(); // hide 'Start a new game' button
   $('#guess').show(); // show 'Guess' button
+  $('.letter').val(''); // clear guess input
   $('.letter').show(); // show guess input box
+  $('.remaining').text('7'); // make sure it says '7 guesses left'
   $('.remaining-guesses').show(); // show 'X guesses left'
-  // set X to 7
-  // clean up wrong guesses
-
-
+  $('.attempts').find('span').remove(); // clean up wrong guesses
 }
 
 function updateHangmanWord(response) {
@@ -60,6 +59,7 @@ function submitGuess() {
         $('.remaining').text(7 - wrong_attempts);
       }
     }
+    $('.letter').val(''); // clear guess input
   }).fail(function(response) {
     console.log('AJAX ERROR', response);
   })
